@@ -24,7 +24,7 @@ permissions:
 
 env:
   WAYPOINT_SERVER_TOKEN: ${{ secrets.WAYPOINT_SERVER_TOKEN }}
-  WAYPOINT_SERVER_ADDR: waypoint.example.com:9701
+  WAYPOINT_SERVER_ADDR: api.hashicorp.cloud:443
   #WAYPOINT_SERVER_TLS: 1
   #WAYPOINT_SERVER_TLS_SKIP_VERIFY: 1
 
