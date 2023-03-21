@@ -1,0 +1,2 @@
+image = "acrhugdevwe001.azurecr.io/voting-app/vote"
+tag   = "latest"
