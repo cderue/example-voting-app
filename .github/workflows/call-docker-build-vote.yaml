@@ -85,4 +85,4 @@ jobs:
         working-directory: ./vote
         run: |
           waypoint init
-          waypoint up
+          waypoint up -var-file dev.wpwars
