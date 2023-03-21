@@ -59,18 +59,20 @@ jobs:
       - name: Setup kubectl
         id: install-kubectl
         uses: azure/setup-kubectl@v3
-      - uses: MarcMeszaros/action-setup-waypoint@releases-api
+
+      #- uses: MarcMeszaros/action-setup-waypoint@releases-api
+      #  with:
+      #    version: '0.8.2'
+      #- run: waypoint init
+      #- run: waypoint build
+
+      - name: 'Setup Waypoint'
+        uses: MarcMeszaros/action-setup-waypoint@releases-api
         with:
           version: '0.8.2'
-      - run: waypoint init
-      - run: waypoint build
-
-      #- name: 'Setup Waypoint'
-      #  uses: hashicorp/action-setup-waypoint
-      #  with:
-      #    version: '0.1.0'
           
-      #- name: 'Build with Waypoint'
-      #  run: |
-      #    waypoint init
-      #    waypoint up
+      - name: 'Build with Waypoint'
+        working-directory: ./vote
+        run: |
+          waypoint init
+          waypoint up
