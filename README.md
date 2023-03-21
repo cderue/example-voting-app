@@ -1,32 +1,20 @@
-# Example Voting App
+# Deploying microservices with Waypoint and GitHub: A voting app example
 
-A simple distributed application running across multiple Docker containers.
+A simple distributed application running across multiple microservices in Docker containers.
 
 ## Getting started
 
-Download [Docker Desktop](https://www.docker.com/products/docker-desktop) for Mac or Windows. [Docker Compose](https://docs.docker.com/compose) will be automatically installed. On Linux, make sure you have the latest version of [Compose](https://docs.docker.com/compose/install/).
+Download [Docker Desktop](https://www.docker.com/products/docker-desktop) for Mac or Windows.
 
 This solution uses Python, Node.js, .NET, with Redis for messaging and Postgres for storage.
 
 Run in this directory to build and run the app:
 
 ```shell
-docker compose up
+run.sh
 ```
 
-The `vote` app will be running at [http://localhost:5000](http://localhost:5000), and the `results` will be at [http://localhost:5001](http://localhost:5001).
-
-Alternately, if you want to run it on a [Docker Swarm](https://docs.docker.com/engine/swarm/), first make sure you have a swarm. If you don't, run:
-
-```shell
-docker swarm init
-```
-
-Once you have your swarm, in this directory run:
-
-```shell
-docker stack deploy --compose-file docker-stack.yml vote
-```
+## Provision a Azure Kubernetes Service cluster with Terraform
 
 ## Run the app in Kubernetes
 
