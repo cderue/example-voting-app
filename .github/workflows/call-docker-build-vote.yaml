@@ -48,6 +48,17 @@ jobs:
       - name: 'Checkout the branch'
         uses: actions/checkout@v2
         
+      - name: Set AKS context
+        id: set-context
+        uses: azure/aks-set-context@v3
+        with:
+          resource-group: ${{ secrets.resource_group }}'
+          cluster-name: ${{ secrets.cluster_name }}
+      
+      - name: Setup kubectl
+        id: install-kubectl
+        uses: azure/setup-kubectl@v3
+        
       - name: 'Setup Waypoint'
         uses: hashicorp/action-setup-waypoint
         with:
@@ -56,4 +67,4 @@ jobs:
       - name: 'Build with Waypoint'
         run: |
           waypoint init
-          waypoint build
+          waypoint up
