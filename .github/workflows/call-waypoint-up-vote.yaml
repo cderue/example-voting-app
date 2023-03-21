@@ -1,4 +1,4 @@
-name: Build Vote
+name: Waypoint Up Vote
 
 on:
   # we want pull requests so we can build(test) but not push to image registry
@@ -8,14 +8,14 @@ on:
     # only build when important files change
     paths:
       - 'vote/**'
-      - '.github/workflows/call-docker-build-vote.yaml'
+      - '.github/workflows/call-waypoint-up-vote.yaml'
   pull_request:
     branches:
       - 'main'
     # only build when important files change
     paths:
       - 'vote/**'
-      - '.github/workflows/call-docker-build-vote.yaml'
+      - '.github/workflows/call-waypoint-up-vote.yaml'
       
 permissions:
   id-token: write
@@ -29,8 +29,8 @@ env:
   WAYPOINT_SERVER_TLS_SKIP_VERIFY: 1
 
 jobs:
-  call-docker-build:
-    name: Vote Call Docker Build
+  call-waypoint-up:
+    name: Call Waypoint Up Vote
     runs-on: ubuntu-latest
     steps:
       - name: 'Az CLI login using OIDC'
@@ -83,7 +83,7 @@ jobs:
       #    -set-default \
       #    hcp-cderue-org-cderue-project
           
-      - name: 'Deploy with Waypoint'
+      - name: 'Publish with Waypoint'
         working-directory: ./vote
         run: |
           waypoint init
