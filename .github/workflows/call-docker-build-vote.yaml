@@ -65,7 +65,7 @@ jobs:
       #- run: waypoint init
       #- run: waypoint build
       - name: 'Login to Docker registry'
-        run: docker login --username ${{ secrets.docker_registry_user_name }} --password ${{ secrets.docker_registry_password }}
+        run: docker login ${{ secrets.docker_registry_server }} --username ${{ secrets.docker_registry_user_name }} --password ${{ secrets.docker_registry_password }}
 
       - name: 'Setup Waypoint'
         uses: MarcMeszaros/action-setup-waypoint@releases-api
