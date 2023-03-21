@@ -22,6 +22,12 @@ permissions:
   id-token: write
   contents: read
 
+env:
+  WAYPOINT_SERVER_TOKEN: ${{ secrets.WAYPOINT_SERVER_TOKEN }}
+  WAYPOINT_SERVER_ADDR: waypoint.example.com:9701
+  #WAYPOINT_SERVER_TLS: 1
+  #WAYPOINT_SERVER_TLS_SKIP_VERIFY: 1
+
 jobs:
   call-docker-build:
     name: Vote Call Docker Build
@@ -38,3 +44,16 @@ jobs:
         run: |
           az account show
           az group list
+          
+      - name: 'Checkout the branch'
+        uses: actions/checkout@v2
+        
+      - name: 'Setup Waypoint'
+        uses: hashicorp/action-setup-waypoint
+        with:
+          version: '0.1.0'
+          
+      - name: 'Build with Waypoint'
+        run: |
+          waypoint init
+          waypoint build
