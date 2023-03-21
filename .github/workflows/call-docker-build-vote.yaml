@@ -70,6 +70,17 @@ jobs:
         uses: MarcMeszaros/action-setup-waypoint@releases-api
         with:
           version: '0.8.2'
+
+      - name: 'Create context'
+        working-directory: ./vote
+        run: |
+          waypoint context create \
+          -server-addr=api.hashicorp.cloud:443 \
+          -server-auth-token=nr9i7drhGtU2e3KrwDesmDqsxirT55V6U79eaRLPnZzLKVFKMim85Etu3o65mVpaTqz4KXi1anExNGpSUNh26DExffMD2JKqmvqZWk4XTqsXPs6nQJFrNG2qgVnwMtyhRwdwdaajRBdFd6oDX9pkdZ3EmPDouEe2wsi36YUfnwrCuoPsVyXTGX2rsNRQXBzpHYnHXQavnsaftkg49sVbt3iniUFh5jDyr65ZqHrHDW4Xx7m8WxfyG6GHN4Ja4zWCBjyaDk9JCWTVf9HwWkEwDq9UsTG9cRt6VJFAD2KefkRVRfKsKaLRiKRaPdaPAUjAAPP6rNE6Kfym96kGznqz2VCfbkXzFEn5SvKnMUgZwHTQG8CW85xLdDRbsQzRAwo61h4aZMBPFPxGg7kkXLrjBzBQ7iMH5gj1orjNL8fjhWVNEiGKkFzurMwAS4ia8QsZjaVbqf3i \
+          -server-require-auth=true \
+          -server-platform="hcp" \
+          -set-default \
+          hcp-cderue-org-cderue-project
           
       - name: 'Build with Waypoint'
         working-directory: ./vote
