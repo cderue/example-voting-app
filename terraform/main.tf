@@ -12,6 +12,47 @@ resource "random_id" "log_analytics_workspace_name_suffix" {
   byte_length = 8
 }
 
+resource "azurerm_container_group" "waypoint" {
+  name                = "waypoint"
+  location            = "West Europe"
+  resource_group_name = azurerm_resource_group.rg.name
+  ip_address_type     = "Public"
+  dns_name_label      = "hug-ui"
+  os_type             = "Linux"
+
+  container {
+    name   = "waypoint"
+    image  = "hashicorp/waypoint:latest"
+    cpu    = "0.5"
+    memory = "1.5"
+
+    ports {
+      port     = 9701
+      protocol = "TCP"
+    }
+    
+    ports {
+      port     = 9702
+      protocol = "TCP"
+    }
+
+    commands = [
+        "waypoint",
+        "server",
+        "-vvv",
+        "-listen-grpc=0.0.0.0:9701",
+        "-listen-http=0.0.0.0:9702",
+        "-advertise-addr=hug-ui.westeurope.azurecontainer.io:9701",
+        "-advertise-tls=true",
+        "-advertise-tls-skip-verify=true",
+    ]
+  }
+
+  tags = {
+    environment = "dev"
+  }
+}
+
 resource "azurerm_log_analytics_workspace" "test" {
   location            = var.log_analytics_workspace_location
   # The WorkSpace name has to be unique across the whole of azure;
