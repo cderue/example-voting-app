@@ -58,9 +58,9 @@ jobs:
       - name: Setup kubectl
         id: install-kubectl
         uses: azure/setup-kubectl@v3
-      - uses: hashicorp/action-setup-waypoint
+      - uses: hashicorp/action-setup-waypoint@main
         with:
-          version: '0.1.0'
+          version: '0.1.3'
       - run: waypoint init
       - run: waypoint build
 
