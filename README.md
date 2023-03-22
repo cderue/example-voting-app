@@ -14,7 +14,89 @@ Run in this directory to build and run the app:
 run.sh
 ```
 
-## Provision a Azure Kubernetes Service cluster with Terraform
+## Create a Kubernetes cluster with Azure Kubernetes Service using Terraform
+
+Azure Kubernetes Service (AKS) manages your hosted Kubernetes environment. AKS allows you to deploy and manage containerized applications without container orchestration expertise. AKS also enables you to do many common maintenance operations without taking your app offline. These operations include provisioning, upgrading, and scaling resources on demand.
+
+### Prerequisites
+
+- **Azure service principal:** If you don't have a service principal, [create a service principal](authenticate-to-azure.md#create-a-service-principal). Make note of the `appId`, `display_name`, `password`, and `tenant`.
+
+- **SSH key pair:** Use one of the following articles:
+
+    - [Portal](/azure/virtual-machines/ssh-keys-portal#generate-new-keys)
+    - [Windows](/azure/virtual-machines/linux/ssh-from-windows#create-an-ssh-key-pair)
+    - [Linux/MacOS](/azure/virtual-machines/linux/mac-create-ssh-keys#create-an-ssh-key-pair)
+
+- **Kubernetes command-line tool (kubectl):** [Download kubectl](https://kubernetes.io/releases/download/).
+
+### Setup the Terraform input variables
+
+
+### Initialize Terraform
+
+
+
+### Create a Terraform execution plan
+
+
+### Apply a Terraform execution plan
+
+
+
+### Verify the results
+
+1. Get the resource group name.
+
+    ```console
+    echo "$(terraform output resource_group_name)"
+    ```
+
+1. Browse to the [Azure portal](https://portal.azure.com).
+
+1. Under **Azure services**, select **Resource groups** and locate your new resource group to see the following resources created in this demo:
+
+    - **Solution:** By default, the demo names this solution **ContainerInsights**. The portal will show the solution's workspace name in parenthesis.
+    - **Kubernetes service:** By default, the demo names this service **k8stest**. (A Managed Kubernetes Cluster is also known as an AKS / Azure Kubernetes Service.)
+    - **Log Analytics Workspace:** By default, the demo names this workspace with a prefix of **TestLogAnalyticsWorkspaceName-** followed by a random number.
+
+1. Get the Kubernetes configuration from the Terraform state and store it in a file that kubectl can read.
+
+    ```console
+    echo "$(terraform output kube_config)" > ./azurek8s
+    ```
+
+1. Verify the previous command didn't add an ASCII EOT character.
+
+    ```console
+    cat ./azurek8s
+    ```
+
+   **Key points:**
+
+    - If you see `<< EOT` at the beginning and `EOT` at the end, remove these characters from the file. Otherwise, you could receive the following error message: `error: error loading config file "./azurek8s": yaml: line 2: mapping values are not allowed in this context`
+
+1. Set an environment variable so that kubectl picks up the correct config.
+
+    ```console
+    export KUBECONFIG=./azurek8s
+    ```
+
+1. Verify the health of the cluster.
+
+    ```console
+    kubectl get nodes
+    ```
+
+    ![The kubectl tool allows you to verify the health of your Kubernetes cluster](./media/create-k8s-cluster-with-tf-and-aks/kubectl-get-nodes.png)
+
+**Key points:**
+
+- When the AKS cluster was created, monitoring was enabled to capture health metrics for both the cluster nodes and pods. These health metrics are available in the Azure portal. For more information on container health monitoring, see [Monitor Azure Kubernetes Service health](/azure/azure-monitor/insights/container-insights-overview).
+- Several key values were output when you applied the Terraform execution plan. For example, the host address, AKS cluster user name, and AKS cluster password are output.
+- To view all of the output values, run `terraform output`.
+- To view a specific output value, run `echo "$(terraform output <output_value_name>)"`.
+
 
 ## Run the app in Kubernetes
 
