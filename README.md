@@ -48,8 +48,8 @@ Azure Kubernetes Service (AKS) manages your hosted Kubernetes environment. AKS a
 
 1. Get the resource group name.
 
-    ```console
-    echo "$(terraform output resource_group_name)"
+    ```shell
+    $ echo "$(terraform output resource_group_name)"
     ```
 
 1. Browse to the [Azure portal](https://portal.azure.com).
@@ -79,13 +79,13 @@ Azure Kubernetes Service (AKS) manages your hosted Kubernetes environment. AKS a
 1. Set an environment variable so that kubectl picks up the correct config.
 
     ```console
-    export KUBECONFIG=./azurek8s
+    $ export KUBECONFIG=./azurek8s
     ```
 
 1. Verify the health of the cluster.
 
-    ```console
-    kubectl get nodes
+    ```shell
+    $ kubectl get nodes
     ```
 
     ![The kubectl tool allows you to verify the health of your Kubernetes cluster](./media/create-k8s-cluster-with-tf-and-aks/kubectl-get-nodes.png)
@@ -97,6 +97,27 @@ Azure Kubernetes Service (AKS) manages your hosted Kubernetes environment. AKS a
 - To view all of the output values, run `terraform output`.
 - To view a specific output value, run `echo "$(terraform output <output_value_name>)"`.
 
+## Installing the Waypoint Server with Helm
+The recommended process for installing Waypoint on Kubernetes is with Helm using the official Waypoint Helm chart. This documentation assumes you have helm installed and that your kubectl is already configured to talk to a Kubernetes cluster.
+
+You can install Waypoint using the following commands:
+
+```shell
+$ helm repo add hashicorp https://helm.releases.hashicorp.com
+"hashicorp" has been added to your repositories
+
+helm install waypoint hashicorp/waypoint
+```
+
+The Helm chart has many configurable values but is designed to work out of the box with reasonable defaults.
+
+Once you run helm install, it may take Waypoint up to 10 minutes to bootstrap itself. During this time, you may retry running the command below to log in to your Waypoint cluster. Once the command succeeds, Waypoint is ready for usage! If the command below fails, wait a few moments and try again; the Waypoint cluster is probably still bootstrapping.
+
+```shell
+$ waypoint login -from-kubernetes
+```
+
+## Setting GitHub secrets
 
 ## Run the app in Kubernetes
 
