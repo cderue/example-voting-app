@@ -73,13 +73,15 @@ $ export ARM_SUBSCRIPTION_ID="<SUBSCRIPTION_ID>"
 $ export ARM_TENANT_ID="<TENANT_VALUE>"
 ```
 
+Make note of the `appId`, `display_name`, `password`, and `tenant`.
+
 ## Create a Kubernetes cluster with Azure Kubernetes Service using Terraform
 
 Azure Kubernetes Service (AKS) manages your hosted Kubernetes environment. AKS allows you to deploy and manage containerized applications without container orchestration expertise. AKS also enables you to do many common maintenance operations without taking your app offline. These operations include provisioning, upgrading, and scaling resources on demand.
 
 ### Prerequisites
 
-- **Azure service principal:** If you don't have a service principal, [create a service principal](authenticate-to-azure.md#create-a-service-principal). Make note of the `appId`, `display_name`, `password`, and `tenant`.
+- **Azure service principal:** If you don't have a service principal, [create a service principal](authenticate-to-azure.md#create-a-service-principal). 
 
 - **SSH key pair:** Use one of the following articles:
 
