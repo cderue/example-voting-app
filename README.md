@@ -61,6 +61,17 @@ The output includes credentials that you must protect. Be sure that you do not i
 }
 ```
 
+## Set your environment variables
+
+HashiCorp recommends setting these values as environment variables rather than saving them in your Terraform configuration.
+In your terminal, set the following environment variables. Be sure to update the variable values with the values Azure returned in the previous command.
+
+```shell
+$ export ARM_CLIENT_ID="<APPID_VALUE>"
+$ export ARM_CLIENT_SECRET="<PASSWORD_VALUE>"
+$ export ARM_SUBSCRIPTION_ID="<SUBSCRIPTION_ID>"
+$ export ARM_TENANT_ID="<TENANT_VALUE>"
+```
 
 ## Create a Kubernetes cluster with Azure Kubernetes Service using Terraform
 
