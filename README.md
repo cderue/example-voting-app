@@ -1,6 +1,6 @@
 # Deploying microservices with Waypoint and GitHub: A voting app example
 
-A simple distributed application running across multiple microservices in Docker containers.
+A simple distributed application running across multiple microservices in Docker containers. This solution uses Python, Node.js, .NET, with Redis for messaging and Postgres for storage.
 
 ## Prerequisites
 
@@ -13,7 +13,7 @@ A simple distributed application running across multiple microservices in Docker
 Terraform must authenticate to Azure to create infrastructure.
 
 ```shell
-az login
+$ az login
 ```
 
 ```code
@@ -35,13 +35,17 @@ You have logged in. Now let us find all the subscriptions to which you have acce
     }
   }
 ]
-``
+```
 
-In your terminal, use the Azure CLI tool to setup your account permissions locally.
+Find the id column for the subscription account you want to use.
+Once you have chosen the account subscription ID, set the account with the Azure CLI.
 
-Download [Docker Desktop](https://www.docker.com/products/docker-desktop) for Mac or Windows.
+```shell
+$ az account set --subscription "35akss-subscription-id"
+```
 
-This solution uses Python, Node.js, .NET, with Redis for messaging and Postgres for storage.
+
+
 
 Run in this directory to build and run the app:
 
