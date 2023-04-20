@@ -2,7 +2,42 @@
 
 A simple distributed application running across multiple microservices in Docker containers.
 
-## Getting started
+## Prerequisites
+
+- An Azure subscription. If you do not have an Azure account, create one now. This tutorial can be completed using only the services included in an Azure free account.
+- The Azure CLI installed
+- [Docker Desktop for Mac or Windows](https://www.docker.com/products/docker-desktop) installed
+
+## Authenticate using the Azure CLI
+
+Terraform must authenticate to Azure to create infrastructure.
+
+```shell
+az login
+```
+
+```code
+You have logged in. Now let us find all the subscriptions to which you have access...
+
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "0envbwi39-home-Tenant-Id",
+    "id": "35akss-subscription-id",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Subscription-Name",
+    "state": "Enabled",
+    "tenantId": "0envbwi39-TenantId",
+    "user": {
+      "name": "your-username@domain.com",
+      "type": "user"
+    }
+  }
+]
+``
+
+In your terminal, use the Azure CLI tool to setup your account permissions locally.
 
 Download [Docker Desktop](https://www.docker.com/products/docker-desktop) for Mac or Windows.
 
