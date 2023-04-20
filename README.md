@@ -44,14 +44,23 @@ Once you have chosen the account subscription ID, set the account with the Azure
 $ az account set --subscription "35akss-subscription-id"
 ```
 
+## Create an Azure Service Principal
 
-
-
-Run in this directory to build and run the app:
+Next, create a Service Principal. A Service Principal is an application within Azure Active Directory with the authentication tokens Terraform needs to perform actions on your behalf. Update the <SUBSCRIPTION_ID> with the subscription ID you specified in the previous step.
 
 ```shell
-run.sh
+$ az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/<SUBSCRIPTION_ID>"
+
+Creating 'Contributor' role assignment under scope '/subscriptions/35akss-subscription-id'
+The output includes credentials that you must protect. Be sure that you do not include these credentials in your code or check the credentials into your source control. For more information, see https://aka.ms/azadsp-cli
+{
+  "appId": "xxxxxx-xxx-xxxx-xxxx-xxxxxxxxxx",
+  "displayName": "azure-cli-2022-xxxx",
+  "password": "xxxxxx~xxxxxx~xxxxx",
+  "tenant": "xxxxx-xxxx-xxxxx-xxxx-xxxxx"
+}
 ```
+
 
 ## Create a Kubernetes cluster with Azure Kubernetes Service using Terraform
 
@@ -198,3 +207,10 @@ deal with them in Docker at a basic level.
 az aks get-credentials --resource-group FRONT-AKS-NA2 --name front-aks
 
 terraform plan -var-file=”prod.tfvars”
+
+
+Run in this directory to build and run the app:
+
+```shell
+run.sh
+```
