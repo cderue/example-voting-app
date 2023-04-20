@@ -92,14 +92,37 @@ Azure Kubernetes Service (AKS) manages your hosted Kubernetes environment. AKS a
 ### Setup the Terraform input variables
 
 
-### Initialize Terraform
+### Initialize the Terraform configuration
+
+Initialize the voting-app-example directory in your terminal. The terraform commands will work with any operating system. Your output should look similar to the one below.
+
+```shell
+$ terraform init
+Initializing the backend...
+
+Initializing provider plugins...
+- Finding hashicorp/azurerm versions matching "~> 3.0.2"...
+- Installing hashicorp/azurerm v3.0.2...
+- Installed hashicorp/azurerm v3.0.2 (signed by HashiCorp)
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+```
+
+### Apply the Terraform configuration
+
+Run the terraform apply command to apply your configuration.
+
+This output shows the execution plan and will prompt you for approval before proceeding. If anything in the plan seems incorrect or dangerous, it is safe to abort here with no changes made to your infrastructure. Type yes at the confirmation prompt to proceed.
 
 
-
-### Create a Terraform execution plan
-
-
-### Apply a Terraform execution plan
 
 
 
