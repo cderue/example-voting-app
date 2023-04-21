@@ -97,18 +97,6 @@ Make note of the `appId`, `display_name`, `password`, and `tenant`.
 
 Azure Kubernetes Service (AKS) manages your hosted Kubernetes environment. AKS allows you to deploy and manage containerized applications without container orchestration expertise. AKS also enables you to do many common maintenance operations without taking your app offline. These operations include provisioning, upgrading, and scaling resources on demand.
 
-### Prerequisites
-
-- **Azure service principal:** If you don't have a service principal, [create a service principal](authenticate-to-azure.md#create-a-service-principal). 
-
-- **SSH key pair:** Use one of the following articles:
-
-    - [Portal](/azure/virtual-machines/ssh-keys-portal#generate-new-keys)
-    - [Windows](/azure/virtual-machines/linux/ssh-from-windows#create-an-ssh-key-pair)
-    - [Linux/MacOS](/azure/virtual-machines/linux/mac-create-ssh-keys#create-an-ssh-key-pair)
-
-- **Kubernetes command-line tool (kubectl):** [Download kubectl](https://kubernetes.io/releases/download/).
-
 ### Setup the Terraform input variables
 
 
